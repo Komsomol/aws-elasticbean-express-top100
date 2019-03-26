@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = 3000;
+const port = process.env.PORT || 8081;
 
 const charts = require('billboard-top-100').getChart;
 
