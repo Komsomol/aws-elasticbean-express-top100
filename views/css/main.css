@@ -1,0 +1,32 @@
+body{
+    background-color:seashell;
+    font-family: 'Montserrat', sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul h2{
+    margin: 0;
+}
+
+.chart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.song{
+    display: flex;
+    align-items: flex-start;
+}
+.item{
+    margin-left:10px;
+}
+
+.box{
+    width: 53px;
+    height: 53px;
+    background-color: red;
+}

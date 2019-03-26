@@ -1,5 +1,25 @@
-html
+mixin song(rank, title, artist, cover)
+    li(class='song')
+        h2=rank 
+        div(class='item')
+            if(cover)
+                img(src=cover)
+            else
+                div(class='box')
+            p=artist
+            p=title
+
+doctype html
+html(lang='en')
   head
+    meta(charset='UTF-8')
     title= title
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat')
+    link(rel='stylesheet', href='/css/main.css')
   body
-    h1= message
+    
+    div(class='charts')
+        h1=message
+        ul
+            for item in songs
+                +song(item.rank, item.title, item.artist, item.cover)
