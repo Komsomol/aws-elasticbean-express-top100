@@ -1,6 +1,6 @@
 # Deployment on AWS Elastic Beanstalk step by step
 
-This will talk through the installation and possible pitfalls when deploying node.js applications on AWS Elastic Beanstalk service. While the [documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs.html) found on the AWS site is good it skips over some basics to get an application running. 
+This will talk through the installation and possible pitfalls when deploying node.js applications on AWS Elastic Beanstalk service. While the [documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs.html) found on the AWS site is good it skips over some basics to get an application running. The application example is express app, that renders the current Billboard Top 100.
 
 ## Install AWS CLI and AWS EB CLI
 
