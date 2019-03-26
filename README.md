@@ -1,23 +1,23 @@
-# Deployment on AWS ElasticBean step by step
+# Deployment on AWS Elastic Beanstalk step by step
 
-This will talk through the installation and possible pitfalls when deploying node.js applications on AWS Elasticbean service. While the [documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs.html) found on the AWS site is good it skips over some basics to get an application running. 
+This will talk through the installation and possible pitfalls when deploying node.js applications on AWS Elastic Beanstalk service. While the [documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs.html) found on the AWS site is good it skips over some basics to get an application running. 
 
 ## Install AWS CLI and AWS EB CLI
 
-The AWS CLI will let you configure your security credentials to allow access to your AWS account. The EB CLI is a far better tool for deployment on Elasticbean itself. Since the installation of both these packages is covered well on AWS Docs it is best to simply follow those.
+The AWS CLI will let you configure your security credentials to allow access to your AWS account. The EB CLI is a far better tool for deployment on AWS Elastic Beanstalk itself, otherwise you are left uploading ```zip``` files with your source code. Since the installation of both these packages is covered well on AWS Docs it is best to simply follow those.
 
 - [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 - [Install AWS EB CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html)
 
 ## EB CLI Commands
-The follow are the commands you will need to deploy your node application to AWS Elasticbean. I assume that you have successfully configured your AWS CLI by running ```aws configure```. AWS Elasticbean will always deploy your latest git commit.
-- Create your application and ```git init``` and ```git add .``` and ```git commit -m "hello aws eb"``` your files.
-- By default AWS Elastic bean will try to execute your node application by trying app.js, then server.js, then "npm start" in that order. 
-- AWS Elasticbean uses ```8081``` to connect so be sure to define your ports as ```const port = process.env.PORT || 8081;```
+The follow are the commands you will need to deploy your node application to AWS Elastic Beanstalk. I assume that you have successfully configured your AWS CLI by running ```aws configure```. Note: AWS Elastic Beanstalk will always deploy your latest git commit.
+- Create your application, run ```git init``` and ```git add .``` and ```git commit -m "hello aws eb"``` your files.
+- By default AWS Elastic Beanstalk will try to execute your node application by trying app.js, then server.js, then "npm start" in that order. Here I defined ```"start": "node app"``` in ```package.json```
+- AWS Elastic Beanstalk uses ```8081``` to connect so be sure to define your ports as ```const port = process.env.PORT || 8081;``` in your application.
 - Run ```eb init``` to create your application. 
-    - You will select the region for your app, define the app, create a name and pick that you are using node.js. It is ok to pick all defaults here. Elasticbean will add a ```.elasticbean``` directory and add it to your ```.gitignore```
+    - You will select the region for your app, define the app, create a name and pick that you are using node.js. It is ok to pick all defaults here. AWS Elastic Beanstalk will add a ```.elasticbeanstalk``` directory with a ```config.yml``` add it to your ```.gitignore```
 - Run ```eb create``` to create an environment for your app. 
-    - You will define enviroment name, DNS CNAME and the load balancer type. It is ok to pick all defaults here. This step takes ~5 minutes.
+    - At this stage you will define the environment name, DNS CNAME and the load balancer type. It is ok to pick all defaults here. This step takes ~5 minutes.
 - You are ready to deploy. Run ```eb deploy```
 - Once complete check the status of your application via ```eb status```
 - You can open your application by running ```eb open```

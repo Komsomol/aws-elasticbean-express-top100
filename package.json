@@ -5,14 +5,13 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app",
-    "deploy": "git add . && git commit -m 'start node command' && eb deploy"
+    "start": "node app"
   },
   "keywords": [
     "node",
     "aws",
     "elastic",
-    "bean"
+    "beanstalk"
   ],
   "author": "farhad agzamov",
   "license": "ISC",
