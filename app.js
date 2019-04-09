@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.get('/test', (req, res) => {
     res.send({
         status:'Server is up'
-    })
+    });
 });
 
 // serve route
@@ -24,17 +24,17 @@ app.get('/', function (req, res) {
                 title: 'Billboard Top 100', 
                 message: 'Billboard Top 100',
                 songs: result.data,
-            })
+            });
         } else {
-            res.send(`Error ${result.data}`)
+            res.send(`Error ${result.data}`);
         }
     });
-})
+});
 
 // listen server
 app.listen(port, () =>{
     console.log(`Server running on ${port}`);
-})
+});
 
 
 const billboardChart = () =>{
@@ -44,13 +44,13 @@ const billboardChart = () =>{
                 resolve({
                     status:'OK',
                     data: chart.songs
-                })
+                });
             } else {
                reject({
                     status:'Error',
                     data: error
-                })
+                });
             }
-        })
-    })
-}
+        });
+    });
+};
