@@ -1,16 +1,17 @@
-body{
-    background-color:seashell;
-    font-family: 'Montserrat', sans-serif;
+body {
+	background-color: seashell;
+	font-family: "Montserrat", sans-serif;
 }
 
 ul {
-  list-style-type: none;
+	list-style-type: none;
 }
 
-ul h2{
-    margin: 0;
+.card {
+	width: 30rem;
 }
 
+/* 
 .chart{
     display: flex;
     align-items: center;
@@ -29,4 +30,4 @@ ul h2{
     width: 53px;
     height: 53px;
     background-color: red;
-}
+} */

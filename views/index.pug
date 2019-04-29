@@ -1,25 +1,29 @@
 mixin song(rank, title, artist, cover)
-    li(class='song')
-        h2=rank 
-        div(class='item')
-            if(cover)
-                img(src=cover)
-            else
-                div(class='box')
-            p=artist
-            p=title
+    li(class='')
+        div(class='card mb-3')
+            div(class='row no-gutters')
+                div(class='col-md-4')
+                    if(cover)
+                        img(src=cover class="card-img-top")
+                    else
+                        img(class="card-img-top")
+                div(class='col-md-8')
+                    div(class="card-body")
+                        h5(class="card-title")=rank
+                        p(class="card-text")=title
+                            div
+                                p=artist
 
 doctype html
 html(lang='en')
-  head
-    meta(charset='UTF-8')
-    title= title
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat')
-    link(rel='stylesheet', href='/css/main.css')
-  body
-    
-    div(class='charts')
-        h1=message
-        ul
-            for item in songs
-                +song(item.rank, item.title, item.artist, item.cover)
+    head
+        include includes/header.pug
+    body
+        div(class='container')
+            div(class='')
+                h1=message
+                ul
+                    for item in songs
+                        +song(item.rank, item.title, item.artist, item.cover)
+
+    include includes/footer.pug
