@@ -9,10 +9,9 @@ mixin song(rank, title, artist, cover)
                         img(class="card-img-top")
                 div(class='col-md-8')
                     div(class="card-body")
-                        h5(class="card-title")=rank
+                        h6(class="card-title")=rank
                         p(class="card-text")=title
-                            div
-                                p=artist
+                        p(class="card-text")=artist
 
 doctype html
 html(lang='en')
