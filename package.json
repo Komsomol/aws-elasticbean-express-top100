@@ -16,7 +16,7 @@
   "author": "farhad agzamov",
   "license": "ISC",
   "dependencies": {
-    "billboard-top-100": "2.4.4",
+    "billboard-top-100": "2.4.5",
     "express": "4.16.4",
     "pug": "2.0.3"
   }

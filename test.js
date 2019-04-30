@@ -1,6 +1,6 @@
 const charts = require("billboard-top-100").getChart;
 
-const billboardChart = () => {
+const BCPromise = async() =>{
 	return new Promise((resolve, reject) => {
 		charts((error, chart) => {
 			if (!error) {
@@ -18,11 +18,9 @@ const billboardChart = () => {
 	});
 };
 
-billboardChart().then(result => {
-	if (result.status == "OK") {
-		console.log(result.data[26]);
-	} else {
-		// console.log(error)
-	}
+const foo = async() =>{   
+	const data = await BCPromise();
+	console.log("DATA ",data);
+};
 
-});
+foo();
