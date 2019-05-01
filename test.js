@@ -1,26 +1,7 @@
-const charts = require("billboard-top-100").getChart;
+const getVideos = require('./getVideos');
 
-const BCPromise = async() =>{
-	return new Promise((resolve, reject) => {
-		charts((error, chart) => {
-			if (!error) {
-				resolve({
-					status: "OK",
-					data: chart.songs
-				});
-			} else {
-				reject({
-					status: "Error",
-					data: error
-				});
-			}
-		});
-	});
-};
+// console.log(getVideo
 
-const foo = async() =>{   
-	const data = await BCPromise();
-	console.log("DATA ",data);
-};
-
-foo();
+getVideos().then( (result) => {
+	console.log(result);
+}).catch( (error) => console.log(error));

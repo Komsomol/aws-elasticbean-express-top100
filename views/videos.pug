@@ -1,0 +1,59 @@
+mixin song(rank, title, artist, cover, yt)
+    li(class='')
+        div(class='card mb-3')
+            div(class='row no-gutters')
+                div(class='col-md-4')
+                    if(cover)
+                        img(src=cover class="card-img-top")
+                    else
+                        img(class="card-img-top")
+                div(class='col-md-8')
+                    div(class="card-body")
+                        h6(class="card-title")=rank
+                        p(class="card-text")
+                            =`${title} by ${artist}`
+                        p(class="card-text")
+                            button(type="button" class="btn btn-primary video-btn" data-toggle="modal" data-src=`https://www.youtube.com/embed/${yt}` data-target="#myModal") Play
+                        //- iframe(type='text/html' width='640' height='390' src="http://www.youtube.com/embed/"+yt+"" frameborder='0')
+
+doctype html
+html(lang='en')
+    head
+        include includes/header.pug
+    body
+        div(class='container')
+            div(class='')
+                h1=message
+                ul
+                    for item in songs
+                        //- p=item[1]
+                        +song(item[0], item[1], item[2], item[3], item[5])
+            //- modal
+            div(class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="video-player" aria-hidden="true")
+                div(class="modal-dialog" role="document")
+                    div(class="modal-content")
+                        div(class="modal-body")
+                            button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                                span(aria-hidden="true")
+                            div(class="embed-responsive embed-responsive-16by9")
+                                iframe(class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay")
+    
+    include includes/footer.pug
+
+    script.
+        var $videoSrc;  
+        $('.video-btn').click(function() {
+            $videoSrc = $(this).data( "src" );
+        });
+        
+        // when the modal is opened autoplay it  
+        $('#myModal').on('shown.bs.modal', function (e) {
+            // set the video src to autoplay and not to show related video. 
+            $("#video").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" ); 
+        })
+
+        // stop playing the youtube video when I close the modal
+        $('#myModal').on('hide.bs.modal', function (e) {
+            // a poor man's stop video
+            $("#video").attr('src',''); 
+        }) 

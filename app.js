@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = process.env.PORT || 8081;
-
+const getVideos = require('./getVideos');
 const charts = require("billboard-top-100").getChart;
 
 app.set("view engine", "pug");
@@ -21,6 +21,21 @@ app.get("/", function(req, res) {
 	billboardChart().then(result => {
 		if (result.status == "OK") {
 			res.render("index", {
+				title: "Billboard Top 100",
+				message: "Billboard Top 100",
+				songs: result.data
+			});
+		} else {
+			res.send(`Error ${result.data}`);
+		}
+	});
+});
+
+app.get("/videos", function(req, res) {
+	videoChart().then(result => {
+		if (result.status == "OK") {
+			// res.json(result.data)
+			res.render("videos", {
 				title: "Billboard Top 100",
 				message: "Billboard Top 100",
 				songs: result.data
@@ -52,4 +67,25 @@ const billboardChart = () => {
 			}
 		});
 	});
+};
+
+const videoChart = () =>{
+	return new Promise ( (resolve, reject) =>{
+		getVideos()
+		.then( (result) => {
+			console.log(result);
+			resolve({
+				status: "OK",
+				data: result
+			});
+		}).catch( (error) => {
+			console.log(error);
+			reject({
+				status: "Error",
+				data: error
+			});
+		});
+	});
+	
+	
 };
