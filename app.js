@@ -17,7 +17,7 @@ app.get("/test", (req, res) => {
 });
 
 // serve route
-app.get("/", function(req, res) {
+app.get("/old", function(req, res) {
 	billboardChart().then(result => {
 		if (result.status == "OK") {
 			res.render("index", {
@@ -31,7 +31,7 @@ app.get("/", function(req, res) {
 	});
 });
 
-app.get("/videos", function(req, res) {
+app.get("/", function(req, res) {
 	videoChart().then(result => {
 		if (result.status == "OK") {
 			// res.json(result.data)
