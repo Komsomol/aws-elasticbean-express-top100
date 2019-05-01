@@ -1,33 +1,11 @@
 body {
-	background-color: seashell;
-	font-family: "Montserrat", sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
-ul {
-	list-style-type: none;
+.card-title{
+    font-family: 'Georgia', sans-serif;
 }
 
 .card {
-	width: 30rem;
+	max-width: 40rem;
 }
-
-/* 
-.chart{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.song{
-    display: flex;
-    align-items: flex-start;
-}
-.item{
-    margin-left:10px;
-}
-
-.box{
-    width: 53px;
-    height: 53px;
-    background-color: red;
-} */

@@ -1,44 +1,37 @@
 mixin song(rank, title, artist, cover, yt)
-    li(class='')
-        div(class='card mb-3')
-            div(class='row no-gutters')
-                div(class='col-md-4')
-                    if(cover)
-                        img(src=cover class="card-img-top")
-                    else
-                        img(class="card-img-top")
-                div(class='col-md-8')
-                    div(class="card-body")
-                        h6(class="card-title")=rank
-                        p(class="card-text")
-                            =`${title} by ${artist}`
-                        p(class="card-text")
-                            button(type="button" class="btn btn-primary video-btn" data-toggle="modal" data-src=`https://www.youtube.com/embed/${yt}` data-name=`${title} by ${artist}` data-target="#myModal") Play
-                        //- iframe(type='text/html' width='640' height='390' src="http://www.youtube.com/embed/"+yt+"" frameborder='0')
+    div(class='card text-white bg-secondary mb-3 lg-12 border-0')
+        div(class='row no-gutters')
+            div(class='col-md-4')
+                img(src=cover class="card-img")
+            div(class='col-md-8')
+                div(class="card-body")
+                    p(class="card-title")=rank
+                    p(class="card-text")
+                        =`${title} by ${artist}`
+                    button(type="button" class="btn btn-dark video-btn" data-toggle="modal" data-src=`https://www.youtube.com/embed/${yt}` data-name=`${title} by ${artist}` data-target="#myModal") Play
 
 doctype html
 html(lang='en')
     head
         include includes/header.pug
-    body
+    body(class="bg-dark")
         div(class='container')
-            div(class='')
-                h1=message
-                ul
+                h1(class="display-4 text-light")=message
+                div(class='')
                     for item in songs
                         //- p=item[1]
                         +song(item[0], item[1], item[2], item[3], item[5])
-            //- modal
-            div(class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="video-player" aria-hidden="true")
-                div(class="modal-dialog" role="document")
-                    div(class="modal-content")
-                        div(class="modal-body")
-                            div(class="modal-header")
-                                h7(class="modal-title" id="name")
-                                button(type="button" class="close" data-dismiss="modal" aria-label="Close")
-                                    <span aria-hidden="true">&times;</span>
-                            div(class="embed-responsive embed-responsive-16by9")
-                                iframe(class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay")
+        //- modal
+    div(class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="video-player" aria-hidden="true")
+        div(class="modal-dialog modal-lg" role="document")
+            div(class="modal-content bg-secondary")
+                div(class="modal-body")
+                    div(class="modal-header")
+                        h7(class="modal-title text-light" id="name")
+                        button(type="button" class="close text-light" data-dismiss="modal" aria-label="Close")
+                            <span aria-hidden="true">&times;</span>
+                    div(class="embed-responsive embed-responsive-16by9")
+                        iframe(class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always" allow="autoplay")
             
     include includes/footer.pug
 
