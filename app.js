@@ -51,8 +51,8 @@ app.get("/rap", function(req, res) {
 		if (result.status == "OK") {
 			// res.json(result.data)
 			res.render("videos", {
-				title: "Billboard Top 100",
-				message: "Billboard Top 100",
+				title: "Hot R&B/hip-hop songs",
+				message: "Hot R&B/hip-hop songs",
 				songs: result.data
 			});
 		} else {
