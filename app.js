@@ -17,7 +17,7 @@ app.get("/test", (req, res) => {
 });
 
 // serve route
-app.get("/old", function(req, res) {
+app.get("/test", function(req, res) {
 	billboardChart().then(result => {
 		if (result.status == "OK") {
 			res.render("index", {
@@ -33,6 +33,21 @@ app.get("/old", function(req, res) {
 
 app.get("/", function(req, res) {
 	videoChart().then(result => {
+		if (result.status == "OK") {
+			// res.json(result.data)
+			res.render("videos", {
+				title: "Billboard Top 100",
+				message: "Billboard Top 100",
+				songs: result.data
+			});
+		} else {
+			res.send(`Error ${result.data}`);
+		}
+	});
+});
+
+app.get("/rap", function(req, res) {
+	videoChart("r-b-hip-hop-songs").then(result => {
 		if (result.status == "OK") {
 			// res.json(result.data)
 			res.render("videos", {
@@ -69,23 +84,22 @@ const billboardChart = () => {
 	});
 };
 
-const videoChart = () =>{
+const videoChart = (chart) =>{
 	return new Promise ( (resolve, reject) =>{
-		getVideos()
-		.then( (result) => {
-			console.log(result);
-			resolve({
-				status: "OK",
-				data: result
+		getVideos(chart)
+			.then( (result) => {
+				console.log(result);
+				resolve({
+					status: "OK",
+					data: result
+				});
+			}).catch( (error) => {
+				console.log(error);
+				reject({
+					status: "Error",
+					data: error
+				});
 			});
-		}).catch( (error) => {
-			console.log(error);
-			reject({
-				status: "Error",
-				data: error
-			});
-		});
 	});
-	
-	
+
 };
