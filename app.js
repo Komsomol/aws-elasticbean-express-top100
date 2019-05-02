@@ -101,5 +101,4 @@ const videoChart = (chart) =>{
 				});
 			});
 	});
-
 };

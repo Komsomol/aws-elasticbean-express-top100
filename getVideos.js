@@ -28,8 +28,6 @@ const getYoutubeLink = (rank, title, artist, cover, songName) => {
 						data.push(result.items[0].id.videoId);
 						data.push(result.items[0].snippet.thumbnails.high.url);
 				}
-
-				// console.log("data",data);
 				resolve(data);
 			}
 		});
@@ -38,26 +36,20 @@ const getYoutubeLink = (rank, title, artist, cover, songName) => {
 
 // gets the song data from billboard
 const gotTop100 = chart => {
-	// console.log('gotTop100 = ',chart);
 	var songs = new Promise((resolve,reject) => {
-		// console.log("chart is "", chart);
 		billboard(chart, function(error, songs){
-			// console.log(error);
 			if (error) {
 				reject(error);
 			} else {
-				// console.log("SENDING SONGS")
 				resolve(songs);
 			}
 		});
 	});
-
 	return songs;
 };
 
 // creates the data object of songs and their youtube links
 const getVideos = (chart = 'hot-100') => {
-
 	var data = new Promise((resolve,reject) => {
 		// lets get the songs
 		gotTop100(chart).then(function(result){
