@@ -69,7 +69,7 @@ const getVideos = (chart = 'hot-100') => {
 			Promise.all(data)
 				.then(function(data){
 					// when the promises of all objects of song names and video links is done
-					console.log(data);
+					// console.log(data);
 					resolve(data);
 				})
 				.catch(function(error){
